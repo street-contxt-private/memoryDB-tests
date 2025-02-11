@@ -1,6 +1,6 @@
 # memoryDB-tests
 
-Test interactions with MemoryDB. A big chunk of this repo was AI-generated.
+Test interactions with MemoryDB. A big chunk of this repo was AI-generated to help iterate quickly.
 
 ```
 mvn clean install

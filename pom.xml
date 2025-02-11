@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>memoryDB-tests</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>5.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson</artifactId>
+            <version>3.24.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+            <version>2.11.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>2.0.9</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Maven Shade Plugin to Create a Fat JAR -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.4.1</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <filters>
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/*.SF</exclude>
+                                        <exclude>META-INF/*.DSA</exclude>
+                                        <exclude>META-INF/*.RSA</exclude>
+                                        <exclude>META-INF/LICENSE</exclude>
+                                        <exclude>META-INF/NOTICE</exclude>
+                                        <exclude>META-INF/services/**</exclude>
+                                        <exclude>module-info.class</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Maven JAR Plugin to Set Main-Class in Manifest -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>org.example.MemoryDBWriterTimer</mainClass>
+
+<!--                            <mainClass>org.example.MemoryDBVerifier</mainClass>-->
+<!--                            <mainClass>org.example.MemoryDBWriter</mainClass>-->
+
+<!--                            <mainClass>org.example.MemoryDBStressTest</mainClass>-->
+<!--                            <mainClass>org.example.MemoryDBMemoryExhaustionTest</mainClass>-->
+<!--                            <mainClass>org.example.MemoryDBConcurrentFailoverTest</mainClass>-->
+
+<!--                            <mainClass>org.example.MemoryDBPersistenceVerification</mainClass>-->
+<!--                            <mainClass>org.example.MemoryDBPersistenceTest</mainClass>-->
+
+<!--                            <mainClass>org.example.MemoryDBRedisson5MinRandomTest</mainClass>-->
+<!--                            <mainClass>org.example.MemoryDBJedisCluster5MinRandomTest</mainClass>-->
+<!--                            <mainClass>org.example.MemoryDBJedisClusterTest</mainClass>-->
+<!--                            <mainClass>org.example.MemoryDBJedis5MinRandomTest</mainClass>-->
+<!--                            <mainClass>org.example.MemoryDBRedissonTest</mainClass>-->
+<!--                            <mainClass>org.example.MemoryDBJedisTest</mainClass>-->
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
